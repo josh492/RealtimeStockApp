@@ -1,0 +1,12 @@
+<div class="dashboard-container">
+  <h1 class="dashboard-title">Stock Tracker</h1>
+  <p class="dashboard-subtitle">Real-time stock prices &middot; Click a card to toggle updates</p>
+
+  <div class="cards-grid">
+    <app-stock-card
+      *ngFor="let card of cards"
+      [card]="card"
+      (toggle)="toggleCard(card)"
+    ></app-stock-card>
+  </div>
+</div>

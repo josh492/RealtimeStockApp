@@ -1,0 +1,54 @@
+<div class="stock-card" [ngClass]="cardClass">
+  <!-- Header: Name + Symbol -->
+  <div class="card-header">
+    <div class="stock-identity">
+      <span class="stock-name">{{ card.stock.name }}</span>
+      <span class="stock-symbol">{{ card.stock.symbol }}</span>
+    </div>
+  </div>
+
+  <!-- Current Price -->
+  <div class="price-section">
+    <span class="current-price">
+      ${{ card.stock.currentPrice | number: '1.2-2' }}
+    </span>
+    <span class="price-change" [class.hidden]="!card.active">
+      <span class="arrow">{{ arrowIcon }}</span>
+      {{ card.stock.change >= 0 ? '+' : '' }}{{ card.stock.change | number: '1.2-2' }}
+      ({{ card.stock.changePercent >= 0 ? '+' : '' }}{{ card.stock.changePercent | number: '1.2-2' }}%)
+    </span>
+  </div>
+
+  <!-- Daily Stats (always visible) -->
+  <div class="stats-row">
+    <div class="stat">
+      <span class="stat-label">Daily High</span>
+      <span class="stat-value">${{ card.stock.dailyHigh | number: '1.2-2' }}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Daily Low</span>
+      <span class="stat-value">${{ card.stock.dailyLow | number: '1.2-2' }}</span>
+    </div>
+  </div>
+
+  <!-- 52-Week Stats (desktop only) -->
+  <div class="stats-row desktop-only">
+    <div class="stat">
+      <span class="stat-label">52W High</span>
+      <span class="stat-value">${{ card.stock.weekHigh52 | number: '1.2-2' }}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">52W Low</span>
+      <span class="stat-value">${{ card.stock.weekLow52 | number: '1.2-2' }}</span>
+    </div>
+  </div>
+
+  <!-- Toggle Switch at bottom center -->
+  <div class="toggle-section" (click)="onToggle(); $event.stopPropagation()">
+    <div class="switch-track" [class.on]="card.active">
+      <span class="track-label on-label">ON</span>
+      <span class="track-label off-label">OFF</span>
+      <div class="switch-thumb"></div>
+    </div>
+  </div>
+</div>
