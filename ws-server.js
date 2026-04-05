@@ -1,8 +1,9 @@
+require('dotenv').config();
 const WebSocket = require('ws');
 const https = require('https');
 
 const PORT = 8080;
-const FINNHUB_API_KEY = 'd78kgrpr01qp0fl5i7d0d78kgrpr01qp0fl5i7dg';
+const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
 
 const STOCKS = [
   { symbol: 'AAPL', name: 'Apple' },
